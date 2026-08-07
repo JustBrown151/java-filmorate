@@ -27,7 +27,7 @@ public class Film {
 
     @NotNull(groups = OnCreate.class)
     @ReleaseDateAfter(groups = {OnCreate.class, OnUpdate.class})
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
 
     @NotNull(groups = OnCreate.class)

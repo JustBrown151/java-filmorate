@@ -33,6 +33,6 @@ public class User {
 
     @NotNull(groups = OnCreate.class)
     @BirthdateBefore(groups = {OnCreate.class, OnUpdate.class})
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 }
