@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     private final List<User> users = new ArrayList<>();
-    private Long nextId = 0L;
+    private Long nextId = 1L;
 
     @GetMapping
     public List<User> getUsers() {
@@ -38,7 +38,7 @@ public class UserController {
         return user;
     }
 
-    @PatchMapping
+    @PutMapping
     public User updateUser(@Validated(OnUpdate.class) @RequestBody User user) {
         log.info("Обновление пользователя с id={}", user.getId());
         User exUser = users.stream().filter(u -> u.getId().equals(user.getId())).findFirst().orElseThrow(() -> {

@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/films")
 public class FilmController {
     private final List<Film> films = new ArrayList<>();
-    private Long nextId = 0L;
+    private Long nextId = 1L;
 
     @GetMapping
     public List<Film> getFilms() {
@@ -35,7 +35,7 @@ public class FilmController {
         return film;
     }
 
-    @PatchMapping
+    @PutMapping
     public Film updateFilm(@Validated(OnUpdate.class) @RequestBody Film film) {
         log.info("Обновление фильма с id={}", film.getId());
         Film exFilm = films.stream().filter(f -> f.getId().equals(film.getId())).findFirst().orElseThrow(() -> {

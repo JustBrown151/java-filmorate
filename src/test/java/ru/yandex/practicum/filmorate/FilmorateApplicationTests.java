@@ -326,17 +326,17 @@ class FilmorateApplicationTests {
         }
 
         @Test
-        @DisplayName("name = null при создании — ошибка")
-        void nameNull_onCreate_isRejected() {
+        @DisplayName("name = null при создании — не ошибка (контроллер подставит login вместо пустого имени)")
+        void nameNull_onCreate_isAccepted() {
             User user = validUser();
             user.setName(null);
             Set<ConstraintViolation<User>> violations = validator.validate(user, OnCreate.class);
-            assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("name")));
+            assertTrue(violations.stream().noneMatch(v -> v.getPropertyPath().toString().equals("name")));
         }
 
         @Test
-        @DisplayName("name = \"\" при создании — текущая реализация это пропускает (нет @NotBlank, только @NotNull)")
-        void nameBlank_onCreate_isCurrentlyAccepted() {
+        @DisplayName("name = \"\" при создании — не ошибка (контроллер подставит login вместо пустого имени)")
+        void nameBlank_onCreate_isAccepted() {
             User user = validUser();
             user.setName("");
             Set<ConstraintViolation<User>> violations = validator.validate(user, OnCreate.class);

@@ -28,7 +28,6 @@ public class User {
     @Pattern(regexp = "\\S+", message = "Логин не должен содержать пробелы", groups = {OnCreate.class, OnUpdate.class})
     private String login;
 
-    @NotNull(groups = OnCreate.class)
     private String name;
 
     @NotNull(groups = OnCreate.class)
