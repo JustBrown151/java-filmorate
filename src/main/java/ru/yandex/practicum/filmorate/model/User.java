@@ -23,7 +23,6 @@ public class User {
     @Email(groups = {OnCreate.class, OnUpdate.class})
     private String email;
 
-    @NotNull(groups = OnCreate.class)
     @NotBlank(groups = {OnCreate.class, OnUpdate.class})
     @Pattern(regexp = "\\S+", message = "Логин не должен содержать пробелы", groups = {OnCreate.class, OnUpdate.class})
     private String login;

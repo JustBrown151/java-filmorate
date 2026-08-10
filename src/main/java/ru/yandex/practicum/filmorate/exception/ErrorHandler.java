@@ -37,4 +37,11 @@ public class ErrorHandler {
         log.warn("{}: {}", e.getStatusCode(), e.getReason());
         return ResponseEntity.status(e.getStatusCode()).body(Map.of("error", String.valueOf(e.getReason())));
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String, String> handleAllExceptions(Exception e) {
+        log.error("Непредвиденная ошибка: {}", e.getMessage(), e);
+        return Map.of("error", "Внутренняя ошибка сервера");
+    }
 }

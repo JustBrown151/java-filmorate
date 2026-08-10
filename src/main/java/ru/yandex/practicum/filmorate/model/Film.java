@@ -17,7 +17,6 @@ public class Film {
     @Null(groups = OnCreate.class)
     private Long id;
 
-    @NotNull(groups = OnCreate.class)
     @NotBlank(message = "Название не может быть пустым", groups = {OnCreate.class, OnUpdate.class})
     private String name;
 
