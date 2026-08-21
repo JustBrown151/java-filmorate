@@ -86,12 +86,12 @@ class FilmorateApplicationTests {
         }
 
         @Test
-        @DisplayName("description = null при создании — ошибка")
-        void descriptionNull_onCreate_isRejected() {
+        @DisplayName("description = null при создании — допустимо")
+        void descriptionNull_onCreate_isAccepted() {
             Film film = validFilm();
             film.setDescription(null);
             Set<ConstraintViolation<Film>> violations = validator.validate(film, OnCreate.class);
-            assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("description")));
+            assertTrue(violations.isEmpty());
         }
 
         @Test
@@ -220,7 +220,7 @@ class FilmorateApplicationTests {
             Film film = new Film();
             Set<ConstraintViolation<Film>> violations = validator.validate(film, OnCreate.class);
             Set<String> violatedFields = violations.stream().map(v -> v.getPropertyPath().toString()).collect(Collectors.toSet());
-            assertEquals(Set.of("name", "description", "releaseDate", "duration"), violatedFields);
+            assertEquals(Set.of("name", "releaseDate", "duration"), violatedFields);
         }
     }
 

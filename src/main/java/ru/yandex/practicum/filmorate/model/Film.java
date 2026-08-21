@@ -22,7 +22,6 @@ public class Film {
     @NotBlank(message = "Название не может быть пустым", groups = {OnCreate.class, OnUpdate.class})
     private String name;
 
-    @NotNull(groups = OnCreate.class)
     @Size(max = 200, message = "Максимальная длина описания — 200 символов", groups = {OnCreate.class, OnUpdate.class})
     private String description;
 
